@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
 {
     Schema::create('carts', function (Blueprint $table) {
-        $table->id('cartId');
+        $table->id();
         $table->foreignId('userId')->constrained('users')->onDelete('cascade');
         $table->timestamps();
     });
