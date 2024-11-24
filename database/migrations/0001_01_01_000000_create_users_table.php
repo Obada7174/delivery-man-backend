@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('firstName', 50);
+            $table->string('lastName', 50);
+            $table->string('password', 255);
+            $table->string('phoneNumber', 15)->nullable();
+            $table->string('img', 255)->nullable();
+            $table->enum('role', ['Admin', 'Customer', 'Vendor','DeliveryMan']);
+            $table->string('location', 255)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -35,24 +40,6 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
-
-        // الكود المقترح من chatgpt
-//         public function up()
-// {
-//     Schema::create('users', function (Blueprint $table) {
-//         $table->id('userId');
-//         $table->string('firstName', 50);
-//         $table->string('lastName', 50);
-//         $table->string('email', 100)->unique();
-//         $table->string('password', 255);
-//         $table->string('phoneNumber', 15)->nullable();
-//         $table->string('img', 255)->nullable();
-//         $table->enum('role', ['Admin', 'Customer', 'Vendor']);
-//         $table->string('location', 255)->nullable();
-//         $table->timestamps();
-//     });
-// }
-
     }
 
     /**
